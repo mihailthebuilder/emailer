@@ -22,5 +22,5 @@ caprover deploy --default
 Test email endpoint
 
 ```
-curl -X POST http://localhost:8080/email -d '{"EmailAddress":"hello@test.com"}'
+curl -X POST http://localhost:8080/email -d '{"EmailAddress":"hello@test.com", "Title":"CompanyHound"}'
 ```
