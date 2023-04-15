@@ -19,7 +19,11 @@ func handleRequestToSendEmail(c *gin.Context) {
 		c.String(http.StatusBadRequest, "error parsing request body")
 	}
 
-	emailContent := fmt.Sprintf("Received email from: %s", body.EmailAddress)
+	emailContent := fmt.Sprintf("Received email from %s", body.EmailAddress)
+	if len(body.Message) > 0 {
+		emailContent = fmt.Sprintf("%s . Message: %s", emailContent, body.Message)
+	}
+
 	from := mail.NewEmail("Sender", getEnv("EMAIL_SENDER"))
 	subject := body.Title
 	to := mail.NewEmail("Recipient", getEnv("EMAIL_RECIPIENT"))
@@ -41,4 +45,5 @@ func handleRequestToSendEmail(c *gin.Context) {
 type EmailRequestBody struct {
 	EmailAddress string
 	Title        string
+	Message      string
 }

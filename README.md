@@ -20,7 +20,12 @@ caprover deploy --default
 ```
 
 Test email endpoint
-
+- without message
 ```
 curl -X POST http://localhost:8080/email -d '{"EmailAddress":"hello@test.com", "Title":"CompanyHound"}'
+```
+
+- with message
+```
+curl -X POST http://localhost:8080/email -d '{"EmailAddress":"hello@test.com", "Title":"CompanyHound", "Message":"Hello world message"}'
 ```
